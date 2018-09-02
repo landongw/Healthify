@@ -1,10 +1,14 @@
+# Our Libraries
+import myplottools
+import RPeak
+
+
+# Third-Party Libraries
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy import signal as sig
 import csv
-from biosppy.signals import ecg
-import myplottools
-import RPeak
+
 
 #  LOAD DATA ----------------------------------------
 f = open("./Our_Device/mohammadreza_salehi/data.txt", "r")
@@ -69,10 +73,12 @@ plt.show()
 # HeartBeat Extraction
 j = 0
 template = []
+
 for i in rpeaks_new:
     template.append(ECG_filtered[int(np.floor(i-0.2*fs)): int(np.floor(i+0.4*fs))])
     j += 1
 plt.figure()
+
 for i in range(len(template)):
     plt.plot(template[i])
 plt.show()
