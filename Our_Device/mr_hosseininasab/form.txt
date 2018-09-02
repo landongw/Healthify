@@ -1,0 +1,5 @@
+Age	21
+Height	180
+Weight	77
+SBP	12.4
+DBP	6.6
