@@ -4,7 +4,7 @@ from scipy import signal as sig
 import csv
 from biosppy.signals import ecg
 import myplottools
-
+import RPeak
 
 #  LOAD DATA ----------------------------------------
 f = open("./Our_Device/mohammadreza_salehi/data.txt", "r")
@@ -52,16 +52,28 @@ plt.show()
 
 
 # R Peaks : P.S. Hamilton, "Open Source ECG Analysis Software Documentation", E.P.Limited, 2002
-rpeaks, = ecg.hamilton_segmenter(signal=ECG_filtered, sampling_rate=fs)
 
-array = []
-for x in rpeaks:
-    array.append(x)
+
+
+rpeaks_new = RPeak.QRS_detection(signal=ECG_filtered[1:], sample_rate=fs, max_bpm=300)
 
 plt.figure()
 plt.plot(ECG_filtered[1:1000])
-for xc in array:
+for xc in rpeaks_new:
     if xc < 1000:
         plt.axvline(x=xc, color='red')
+
+plt.title("R-Peaks")
+plt.show()
+
+# HeartBeat Extraction
+j = 0
+template = []
+for i in rpeaks_new:
+    template.append(ECG_filtered[int(np.floor(i-0.2*fs)): int(np.floor(i+0.4*fs))])
+    j += 1
+plt.figure()
+for i in range(len(template)):
+    plt.plot(template[i])
 plt.show()
 
