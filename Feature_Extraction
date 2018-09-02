@@ -1,0 +1,57 @@
+# Our Libraries
+import myplottools
+import RPeak
+
+
+# Third-Party Libraries
+import numpy as np
+from matplotlib import pyplot as plt
+from scipy import signal as sig
+import csv
+
+# Laoding the signal
+
+signal = []
+with open("patient233/s0457_re-Data.txt") as tsv:
+    for line in csv.reader(tsv, dialect="excel-tab"):
+        signal.append(float(line[1]))   # ECG signal from "i" electrode
+
+
+plt.figure()
+plt.plot(signal)
+plt.show()
+
+fs = 1000
+
+# Frequency Filter
+
+h = sig.firwin(101, [4, 50], width=None, window='hamming', pass_zero=False, scale=True, fs=fs)
+myplottools.mfreqz(h, 1, fs)  # bode plot
+ECG_filtered = sig.fftconvolve(h, signal)
+
+
+# R-Peak Detection
+
+rpeaks_new = RPeak.QRS_detection(signal=ECG_filtered, sample_rate=fs, max_bpm=300)
+
+plt.figure()
+plt.plot(ECG_filtered[1:1000])
+for xc in rpeaks_new:
+    if xc < 1000:
+        plt.axvline(x=xc, color='red')
+
+plt.title("R-Peaks")
+plt.show()
+
+# HeartBeat Extraction
+j = 0
+template = []
+
+for i in rpeaks_new:
+    template.append(ECG_filtered[int(np.floor(i-0.2*fs)): int(np.floor(i+0.4*fs))])
+    j += 1
+plt.figure()
+
+for i in range(10):
+    plt.plot(template[i])
+plt.show()

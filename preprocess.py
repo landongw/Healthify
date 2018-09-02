@@ -57,8 +57,6 @@ plt.show()
 
 # R Peaks : P.S. Hamilton, "Open Source ECG Analysis Software Documentation", E.P.Limited, 2002
 
-
-
 rpeaks_new = RPeak.QRS_detection(signal=ECG_filtered[1:], sample_rate=fs, max_bpm=300)
 
 plt.figure()
@@ -79,7 +77,7 @@ for i in rpeaks_new:
     j += 1
 plt.figure()
 
-for i in range(len(template)):
+for i in range(10):
     plt.plot(template[i])
 plt.show()
 
