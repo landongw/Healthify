@@ -1,3 +1,9 @@
+""""
+Healthify - Plot Tools
+Behrad Moniri and Amirhossein Afsharrad
+
+"""
+
 from scipy.fftpack import fft, ifft
 from scipy import signal as sig
 from matplotlib import pyplot as plt
