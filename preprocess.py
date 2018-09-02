@@ -15,6 +15,8 @@ f = open("./Our_Device/mohammadreza_salehi/data.txt", "r")
 reader = csv.reader(f)
 signal1 = []
 signal2 = []
+
+
 for row in reader:
     sp = (row[0].split("\t"))
     signal1.append(float(sp[0]))
