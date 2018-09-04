@@ -1,0 +1,291 @@
+id,sex,age,condition
+1.0,female,81.0,"Myocardial infarction"
+2.0,female,58.0,"Myocardial infarction"
+3.0,male,63.0,"Myocardial infarction"
+4.0,male,69.0,"Myocardial infarction"
+5.0,male,74.0,"Myocardial infarction"
+6.0,female,62.0,"Myocardial infarction"
+7.0,male,70.0,"Myocardial infarction"
+8.0,male,60.0,"Myocardial infarction"
+9.0,male,66.0,"Myocardial infarction"
+10.0,male,46.0,"Myocardial infarction"
+11.0,female,62.0,"Myocardial infarction"
+12.0,male,67.0,"Myocardial infarction"
+13.0,female,71.0,"Myocardial infarction"
+14.0,male,75.0,"Myocardial infarction"
+15.0,female,68.0,"Myocardial infarction"
+16.0,male,63.0,"Myocardial infarction"
+17.0,male,60.0,"Myocardial infarction"
+18.0,male,52.0,"Myocardial infarction"
+19.0,male,57.0,"Myocardial infarction"
+20.0,female,54.0,"Myocardial infarction"
+21.0,male,67.0,"Myocardial infarction"
+22.0,male,43.0,"Myocardial infarction"
+23.0,male,69.0,"Myocardial infarction"
+24.0,male,52.0,"Myocardial infarction"
+25.0,male,76.0,"Myocardial infarction"
+26.0,female,74.0,"Myocardial infarction"
+27.0,male,53.0,"Myocardial infarction"
+28.0,male,49.0,"Myocardial infarction"
+29.0,male,49.0,"Myocardial infarction"
+30.0,male,63.0,"Myocardial infarction"
+31.0,male,65.0,"Myocardial infarction"
+32.0,male,49.0,"Myocardial infarction"
+33.0,male,60.0,"Myocardial infarction"
+34.0,male,49.0,"Myocardial infarction"
+35.0,male,40.0,"Myocardial infarction"
+36.0,male,75.0,"Myocardial infarction"
+37.0,male,50.0,"Myocardial infarction"
+38.0,male,36.0,"Myocardial infarction"
+39.0,male,61.0,"Myocardial infarction"
+40.0,male,51.0,"Myocardial infarction"
+41.0,male,65.0,"Myocardial infarction"
+42.0,male,49.0,"Myocardial infarction"
+43.0,female,52.0,"Myocardial infarction"
+44.0,female,66.0,"Myocardial infarction"
+45.0,male,44.0,"Myocardial infarction"
+46.0,female,64.0,"Myocardial infarction"
+47.0,male,86.0,"Myocardial infarction"
+48.0,male,64.0,"Myocardial infarction"
+49.0,female,42.0,"Myocardial infarction"
+50.0,female,44.0,"Myocardial infarction"
+51.0,female,55.0,"Myocardial infarction"
+52.0,male,44.0,"Myocardial infarction"
+53.0,male,66.0,"Myocardial infarction"
+54.0,male,47.0,"Myocardial infarction"
+55.0,female,66.0,"Myocardial infarction"
+56.0,female,48.0,"Myocardial infarction"
+57.0,male,53.0,"Myocardial infarction"
+58.0,female,52.0,"Myocardial infarction"
+59.0,female,63.0,"Myocardial infarction"
+60.0,male,54.0,"Myocardial infarction"
+61.0,male,37.0,"Myocardial infarction"
+62.0,female,68.0,"Myocardial infarction"
+63.0,male,62.0,"Myocardial infarction"
+64.0,male,72.0,"Myocardial infarction"
+65.0,male,52.0,"Myocardial infarction"
+66.0,male,68.0,"Myocardial infarction"
+67.0,male,59.0,"Myocardial infarction"
+68.0,male,44.0,"Myocardial infarction"
+69.0,male,62.0,"Myocardial infarction"
+70.0,male,52.0,"Myocardial infarction"
+71.0,male,80.0,"Myocardial infarction"
+72.0,male,40.0,"Myocardial infarction"
+73.0,male,63.0,"Myocardial infarction"
+74.0,female,80.0,"Myocardial infarction"
+75.0,male,50.0,"Myocardial infarction"
+76.0,male,43.0,"Myocardial infarction"
+77.0,male,65.0,"Myocardial infarction"
+78.0,male,68.0,"Myocardial infarction"
+79.0,male,75.0,"Myocardial infarction"
+80.0,male,48.0,"Myocardial infarction"
+81.0,male,53.0,"Myocardial infarction"
+82.0,male,65.0,"Myocardial infarction"
+83.0,male,45.0,"Myocardial infarction"
+84.0,male,55.0,"Myocardial infarction"
+85.0,female,56.0,"Myocardial infarction"
+86.0,female,66.0,"Myocardial infarction"
+87.0,male,66.0,"Myocardial infarction"
+88.0,male,54.0,"Myocardial infarction"
+89.0,female,80.0,"Myocardial infarction"
+90.0,male,51.0,"Myocardial infarction"
+91.0,female,78.0,"Myocardial infarction"
+92.0,female,44.0,"Myocardial infarction"
+93.0,male,48.0,"Myocardial infarction"
+94.0,female,71.0,"Myocardial infarction"
+95.0,male,46.0,"Myocardial infarction"
+96.0,male,43.0,"Myocardial infarction"
+97.0,male,68.0,"Myocardial infarction"
+98.0,female,63.0,"Myocardial infarction"
+99.0,male,52.0,"Myocardial infarction"
+100.0,female,72.0,"Myocardial infarction"
+101.0,male,57.0,"Myocardial infarction"
+102.0,female,72.0,"Myocardial infarction"
+103.0,male,52.0,"Myocardial infarction"
+104.0,male,58.0,"Healthy control"
+105.0,female,32.0,"Healthy control"
+106.0,male,46.0,"Valvular heart disease"
+107.0,female,41.0,"Valvular heart disease"
+108.0,male,77.0,"Myocardial infarction"
+109.0,male,17.0,Dysrhythmia
+110.0,n/a,-1.0,"Valvular heart disease"
+111.0,male,75.0,"Myocardial infarction"
+112.0,male,59.0,Dysrhythmia
+113.0,female,65.0,Dysrhythmia
+114.0,female,68.0,"Valvular heart disease"
+115.0,female,74.0,"Heart failure (NYHA 2)"
+116.0,male,54.0,"Healthy control"
+117.0,male,37.0,"Healthy control"
+118.0,male,70.0,"Heart failure (NYHA 3)"
+119.0,n/a,83.0,n/a
+120.0,male,72.0,"Myocardial infarction"
+121.0,female,69.0,"Healthy control"
+122.0,male,68.0,"Healthy control"
+123.0,female,61.0,"Heart failure (NYHA 4)"
+125.0,n/a,-1.0,n/a
+126.0,male,62.0,Palpitation
+127.0,female,32.0,Cardiomyopathy
+128.0,male,63.0,"Myocardial infarction"
+129.0,male,53.0,Cardiomyopathy
+130.0,male,75.0,"Stable angina"
+131.0,male,26.0,"Healthy control"
+133.0,male,31.0,Dysrhythmia
+135.0,female,54.0,"Myocardial infarction"
+136.0,male,51.0,n/a
+137.0,male,52.0,Cardiomyopathy
+138.0,male,84.0,"Myocardial infarction"
+139.0,female,85.0,"Myocardial infarction"
+140.0,female,75.0,"Myocardial infarction"
+141.0,male,46.0,"Myocardial infarction"
+142.0,male,54.0,"Myocardial infarction"
+143.0,male,67.0,n/a
+144.0,female,57.0,n/a
+145.0,male,63.0,"Myocardial infarction"
+146.0,n/a,20.0,n/a
+147.0,male,81.0,Dysrhythmia
+148.0,male,58.0,"Myocardial infarction"
+149.0,male,53.0,"Myocardial infarction"
+150.0,male,36.0,"Healthy control"
+151.0,female,66.0,Dysrhythmia
+152.0,female,79.0,"Myocardial infarction"
+153.0,male,52.0,Dysrhythmia
+154.0,n/a,-1.0,n/a
+155.0,male,37.0,"Healthy control"
+156.0,male,17.0,"Healthy control"
+157.0,male,87.0,Dysrhythmia
+158.0,male,64.0,"Myocardial infarction"
+159.0,male,73.0,Hypertrophy
+160.0,male,55.0,"Myocardial infarction"
+162.0,n/a,-1.0,n/a
+163.0,female,68.0,"Myocardial infarction"
+164.0,female,87.0,n/a
+165.0,male,26.0,"Healthy control"
+166.0,male,-1.0,"Healthy control"
+167.0,female,80.0,Cardiomyopathy
+168.0,female,75.0,Dysrhythmia
+169.0,female,54.0,"Healthy control"
+170.0,male,-1.0,"Healthy control"
+171.0,female,64.0,"Bundle branch block"
+172.0,male,50.0,"Healthy control"
+173.0,female,57.0,"Healthy control"
+174.0,male,26.0,"Healthy control"
+175.0,female,57.0,"Bundle branch block"
+176.0,female,79.0,n/a
+177.0,female,35.0,Dysrhythmia
+178.0,female,85.0,n/a
+179.0,female,77.0,n/a
+180.0,male,37.0,"Healthy control"
+181.0,n/a,-1.0,n/a
+182.0,male,29.0,"Healthy control"
+183.0,female,57.0,"Myocardial infarction"
+184.0,female,81.0,"Healthy control"
+185.0,female,22.0,"Healthy control"
+186.0,male,45.0,n/a
+187.0,male,62.0,Dysrhythmia
+188.0,male,51.0,"Valvular heart disease"
+189.0,male,61.0,"Myocardial infarction"
+190.0,n/a,-1.0,n/a
+191.0,male,60.0,"Stable angina"
+192.0,female,63.0,n/a
+193.0,female,59.0,"Myocardial infarction"
+194.0,male,67.0,n/a
+195.0,female,71.0,"Myocardial infarction"
+196.0,female,84.0,"Unstable angina"
+197.0,male,51.0,"Myocardial infarction"
+198.0,female,-1.0,"Healthy control"
+199.0,male,-1.0,"Bundle branch block"
+200.0,male,-1.0,n/a
+201.0,male,39.0,Cardiomyopathy
+202.0,male,29.0,"Bundle branch block"
+203.0,male,32.0,"Bundle branch block"
+204.0,male,67.0,"Bundle branch block"
+205.0,male,63.0,"Myocardial infarction"
+206.0,male,32.0,"Bundle branch block"
+207.0,male,46.0,"Myocardial infarction"
+208.0,male,46.0,"Bundle branch block"
+209.0,male,51.0,"Bundle branch block"
+210.0,male,56.0,Hypertrophy
+211.0,male,68.0,"Myocardial infarction"
+212.0,male,66.0,Hypertrophy
+213.0,male,58.0,"Bundle branch block"
+214.0,male,35.0,"Healthy control"
+215.0,male,82.0,Cardiomyopathy
+216.0,female,73.0,Hypertrophy
+217.0,female,62.0,"Bundle branch block"
+218.0,male,70.0,Dysrhythmia
+219.0,male,66.0,"Bundle branch block"
+220.0,male,76.0,"Bundle branch block"
+221.0,male,63.0,Hypertrophy
+222.0,female,60.0,Cardiomyopathy
+223.0,male,56.0,"Myocardial infarction"
+224.0,female,38.0,"Valvular heart disease"
+225.0,female,56.0,"Bundle branch block"
+226.0,male,62.0,"Myocardial infarction"
+227.0,male,52.0,Hypertrophy
+228.0,male,73.0,"Bundle branch block"
+229.0,male,55.0,"Healthy control"
+230.0,male,68.0,"Myocardial infarction"
+231.0,male,57.0,"Myocardial infarction"
+232.0,female,70.0,Cardiomyopathy
+233.0,male,24.0,"Healthy control"
+234.0,male,34.0,"Healthy control"
+235.0,male,30.0,"Healthy control"
+236.0,female,25.0,"Healthy control"
+237.0,male,47.0,"Healthy control"
+238.0,male,29.0,"Healthy control"
+239.0,male,59.0,"Healthy control"
+240.0,male,28.0,"Healthy control"
+241.0,male,33.0,"Healthy control"
+242.0,female,28.0,"Healthy control"
+243.0,female,52.0,"Healthy control"
+244.0,male,44.0,"Healthy control"
+245.0,male,30.0,"Healthy control"
+246.0,male,54.0,"Healthy control"
+247.0,female,48.0,"Healthy control"
+248.0,male,64.0,"Healthy control"
+249.0,male,46.0,Myocarditis
+250.0,male,53.0,Hypertrophy
+251.0,male,40.0,"Healthy control"
+252.0,male,54.0,"Healthy control"
+253.0,male,62.0,Cardiomyopathy
+254.0,male,57.0,Cardiomyopathy
+255.0,male,69.0,"Healthy control"
+256.0,female,64.0,Cardiomyopathy
+257.0,male,68.0,Cardiomyopathy
+258.0,male,42.0,Dysrhythmia
+259.0,female,58.0,"Myocardial infarction"
+260.0,male,-1.0,"Healthy control"
+261.0,male,51.0,"Myocardial infarction"
+262.0,female,41.0,Cardiomyopathy
+263.0,male,37.0,"Healthy control"
+264.0,male,45.0,"Healthy control"
+265.0,male,57.0,"Myocardial infarction"
+266.0,male,68.0,"Healthy control"
+267.0,female,67.0,"Healthy control"
+268.0,male,55.0,"Myocardial infarction"
+269.0,male,61.0,Myocarditis
+270.0,male,60.0,"Myocardial infarction"
+271.0,male,41.0,Myocarditis
+272.0,male,61.0,Myocarditis
+273.0,male,69.0,"Myocardial infarction"
+274.0,male,57.0,"Myocardial infarction"
+275.0,male,48.0,n/a
+276.0,male,-1.0,"Healthy control"
+277.0,male,-1.0,"Healthy control"
+278.0,male,62.0,n/a
+279.0,female,35.0,"Healthy control"
+280.0,male,67.0,"Myocardial infarction"
+281.0,male,68.0,n/a
+282.0,male,61.0,"Myocardial infarction"
+283.0,male,82.0,"Myocardial infarction"
+284.0,male,48.0,"Healthy control"
+285.0,n/a,-1.0,n/a
+286.0,male,56.0,Dysrhythmia
+287.0,female,78.0,"Myocardial infarction"
+288.0,male,67.0,Cardiomyopathy
+289.0,female,69.0,Cardiomyopathy
+290.0,male,60.0,"Myocardial infarction"
+291.0,male,69.0,"Myocardial infarction"
+292.0,male,66.0,"Myocardial infarction"
+293.0,male,75.0,"Myocardial infarction"
+294.0,female,61.0,"Myocardial infarction"
