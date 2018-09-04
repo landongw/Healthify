@@ -1,6 +1,6 @@
 # HEALTHIFY
 
-Healthify is a team working on *ECG* signal . 
+We are HEALTHIFY, working on *ECG* signal . 
 
 our first target is to diagnose these diagnostic classes:
 * Myocardial infarction	
