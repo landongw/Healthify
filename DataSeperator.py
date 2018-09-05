@@ -20,7 +20,7 @@ raw_signal = []
 Signals = []
 Labels = []
 
-for patient in patients[1:]:  # for each patient (avoid RECORDS.txt)
+for patient in patients:  # for each patient (avoid RECORDS.txt)
     print(patient)
     if os.listdir(location + patient):
         files = os.listdir(location + patient)  # load the patient's files
