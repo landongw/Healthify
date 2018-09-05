@@ -13,14 +13,16 @@ with open("Label/data.csv") as tsv:
     for line in csv.reader(tsv):
         dictionary[int(float(line[0]))] = line[3]
 
-patients = os.listdir(location)  # List of patients
-patients = sorted(patients)
-
+#patients = os.listdir(location)  # List of patients
+#patients = sorted(patients)
+patients = ['patient100']
 raw_signal = []
 Signals = []
 Labels = []
 
-for patient in patients[1:]:  # for each patient (avoid RECORDS.txt)
+
+
+for patient in patients[0:]:  # for each patient (avoid RECORDS.txt)
     print(patient)
     files = os.listdir(location + patient)  # load the patient's files
     for file in files:  # for each file
@@ -43,11 +45,13 @@ for patient in patients[1:]:  # for each patient (avoid RECORDS.txt)
 
             for i in range(size):
                 Signals.append(ECG_filtered[int(i * fs * 10):   int(fs * (i + 1) * 10)]) # Patients Signal
-                Labels.append(dictionary[int(patient[8:])])  # Patients Label
+                Labels.append(dictionary[int(patient[7:])])  # Patients Label
 
                 with open("db.csv", "a+") as file:
                     writer = csv.writer(file)
-                    writer.writerow([dictionary[int(patient[8:])], ECG_filtered[int(i * fs * 10):   int(fs * (i + 1) * 10)]])
+
+                    writer.writerow([dictionary[int(patient[7:])], ECG_filtered[int(i * fs * 10):   int(fs * (i + 1) * 10)]])
 
 
-
+print(Signals)
+print(Labels)
