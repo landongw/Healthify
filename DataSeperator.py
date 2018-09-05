@@ -22,34 +22,35 @@ Labels = []
 
 for patient in patients[1:]:  # for each patient (avoid RECORDS.txt)
     print(patient)
-    files = os.listdir(location + patient)  # load the patient's files
-    for file in files:  # for each file
-        if file.find("Data") != -1:  # if it is not a header file
-            print(file)
+    if os.listdir(location + patient):
+        files = os.listdir(location + patient)  # load the patient's files
+        for file in files:  # for each file
+            if file.find("Data") != -1:  # if it is not a header file
+                print(file)
 
-            raw_signal = []
-            with open(location + patient + "/" + file) as tsv:  # load the file
-                for line in csv.reader(tsv, dialect="excel-tab"):  # load the required signal
-                    raw_signal.append(float(line[1]))  # ECG signal from  electrode "i"
-                    fs = 1000
+                raw_signal = []
+                with open(location + patient + "/" + file) as tsv:  # load the file
+                    for line in csv.reader(tsv, dialect="excel-tab"):  # load the required signal
+                        raw_signal.append(float(line[1]))  # ECG signal from  electrode "i"
+                        fs = 1000
 
-            h = sig.firwin(101, [10, 50], width=None, window='hamming', pass_zero=False, scale=True, fs=fs)
-            ECG_filtered = sig.fftconvolve(h, raw_signal)  # filter
-            ECG_filtered = ECG_filtered[0::10]  # Down sample
-            fs = fs / 10
+                h = sig.firwin(101, [10, 50], width=None, window='hamming', pass_zero=False, scale=True, fs=fs)
+                ECG_filtered = sig.fftconvolve(h, raw_signal)  # filter
+                ECG_filtered = ECG_filtered[0::10]  # Down sample
+                fs = fs / 10
 
-            # Write in database
-            size = int(len(ECG_filtered) / (10 * fs))
+                # Write in database
+                size = int(len(ECG_filtered) / (10 * fs))
 
-            for i in range(size):
-                Signals.append(ECG_filtered[int(i * fs * 10):   int(fs * (i + 1) * 10)])  # Patients Signal
-                Labels.append(dictionary[int(patient[7:])])  # Patients Label
+                for i in range(size):
+                    Signals.append(ECG_filtered[int(i * fs * 10):   int(fs * (i + 1) * 10)])  # Patients Signal
+                    Labels.append(dictionary[int(patient[7:])])  # Patients Label
 
-                with open("db.csv", "a+") as file:
-                    writer = csv.writer(file)
+                    with open("db.csv", "a+") as file:
+                        writer = csv.writer(file)
 
-                    writer.writerow(
-                        [dictionary[int(patient[7:])], ECG_filtered[int(i * fs * 10):   int(fs * (i + 1) * 10)]])
+                        writer.writerow(
+                            [dictionary[int(patient[7:])], ECG_filtered[int(i * fs * 10):   int(fs * (i + 1) * 10)]])
 
 print(Signals)
 print(Labels)
