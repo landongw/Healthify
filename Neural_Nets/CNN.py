@@ -27,7 +27,7 @@ def generate_Model(optimizer='adam', loss='categorical_crossentropy'):
     model.add(Activation('sigmoid'))
 
 
-    tensorboard = TensorBoard(log_dir="logs/{}".format(NAME))   # initialize Tensorboard
+    tensorboard = TensorBoard(log_dir="logs/{}".format(name))   # initialize Tensorboard
 
     model.compile(optimizer=optimizer,  # Good default optimizer to start with
                   loss=loss,
