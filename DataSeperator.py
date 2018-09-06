@@ -37,20 +37,22 @@ for patient in patients:  # for each patient (avoid RECORDS.txt)
                 h = sig.firwin(101, [10, 50], width=None, window='hamming', pass_zero=False, scale=True, fs=fs)
                 ECG_filtered = sig.fftconvolve(h, raw_signal)  # filter
                 ECG_filtered = ECG_filtered[0::10]  # Down sample
-                fs = fs / 10
+                fs = fs / 10   # fs = 100 Hz
 
                 # Write in database
-                size = int(len(ECG_filtered) / (10 * fs))
+                size = int(len(ECG_filtered) / (3 * fs))
 
                 for i in range(size):
-                    Signals.append(ECG_filtered[int(i * fs * 10):   int(fs * (i + 1) * 10)])  # Patients Signal
+                    Signals.append(ECG_filtered[int(i * fs * 3):   int(fs * (i + 1) * 3)])  # Patients Signal
                     Labels.append(dictionary[int(patient[7:])])  # Patients Label
 
                     with open("db.csv", "a+") as file:
                         writer = csv.writer(file)
 
                         writer.writerow(
-                            [dictionary[int(patient[7:])], ECG_filtered[int(i * fs * 10):   int(fs * (i + 1) * 10)]])
+                            [dictionary[int(patient[7:])], ECG_filtered[int(i * fs * 3):   int(fs * (i + 1) * 3)]])
 
 print(Signals)
 print(Labels)
+print("Number of Signals:")
+print(len(Labels))
