@@ -47,7 +47,7 @@ for patient in patients:  # for each patient (avoid RECORDS.txt)
                     Signals.append(ECG_filtered[int(i * fs * 3):   int(fs * (i + 1) * 3)])  # Patients Signal
                     Labels.append(dictionary[int(patient[7:])])
 
-    break
+
 
 print(Signals)
 print(Labels)
