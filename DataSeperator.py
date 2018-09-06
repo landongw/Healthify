@@ -45,13 +45,7 @@ for patient in patients:  # for each patient (avoid RECORDS.txt)
 
                 for i in range(size):
                     Signals.append(ECG_filtered[int(i * fs * 3):   int(fs * (i + 1) * 3)])  # Patients Signal
-                    Labels.append(dictionary[int(patient[7:])])  # Patients Label
-
-                    with open("db.csv", "a+") as file:
-                        writer = csv.writer(file)
-
-                        writer.writerow(
-                            [dictionary[int(patient[7:])], ECG_filtered[int(i * fs * 3):   int(fs * (i + 1) * 3)]])
+                    Labels.append(dictionary[int(patient[7:])])
 
     break
 
@@ -59,6 +53,15 @@ print(Signals)
 print(Labels)
 print("Number of Signals:")
 print(len(Signals))
+
+with open("demofile.txt", "w+") as f:
+    for i in range(len(Labels)):
+        temp_sig = Signals[i]
+        temp_label = Labels[i]
+        f.write(temp_label+",")
+        for j in range(len(temp_sig)):
+            f.write(str(temp_sig[j])+',')
+        f.write("\n")
 
 plt.figure()
 plt.plot(Signals[0])
