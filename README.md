@@ -1,6 +1,6 @@
 # HEALTHIFY
 
-We are HEALTHIFY, working on *ECG* signal . 
+We are HEALTHIFY, working on *ECG* signals. 
 
 our first target is to diagnose these diagnostic classes:
 * Myocardial infarction	
