@@ -1,6 +1,6 @@
 # You can use "Signals" and "Labels" or use the csv file that this code generates
 
-
+from matplotlib import pyplot as plt
 from scipy import signal as sig
 import csv
 import os
@@ -19,6 +19,7 @@ patients = sorted(patients)
 raw_signal = []
 Signals = []
 Labels = []
+
 
 for patient in patients:  # for each patient (avoid RECORDS.txt)
     print(patient)
@@ -52,7 +53,13 @@ for patient in patients:  # for each patient (avoid RECORDS.txt)
                         writer.writerow(
                             [dictionary[int(patient[7:])], ECG_filtered[int(i * fs * 3):   int(fs * (i + 1) * 3)]])
 
+    break
+
 print(Signals)
 print(Labels)
 print("Number of Signals:")
-print(len(Labels))
+print(len(Signals))
+
+plt.figure()
+plt.plot(Signals[0])
+plt.show()
