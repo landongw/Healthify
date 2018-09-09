@@ -137,3 +137,17 @@ nolds.lyap_r(np.array(HRV), emb_dim=2, lag=1, min_tsep=10, tau=1, debug_plot=Tru
 plt.show()
 
 DFA_Slope = nolds.dfa(np.array(HRV))
+
+
+DeltaRR = np.array(HRV[1:]) - np.array(HRV[0:-1])
+print(DeltaRR)
+
+PosSeqTrend = 0
+NegSeqTrend = 0
+for i in range(len(DeltaRR) - 1):
+    if DeltaRR[i] > 0 and DeltaRR[i + 1] > 0:
+        PosSeqTrend += 1
+    if DeltaRR[i] < 0 and DeltaRR[i + 1] < 0:
+        NegSeqTrend += 1
+
+print(PosSeqTrend, NegSeqTrend)
