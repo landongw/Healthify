@@ -11,6 +11,7 @@ from scipy import stats
 import csv
 import nolds
 
+
 def ApEn(U, m, r):
     def _maxdist(x_i, x_j):
         return max([abs(ua - va) for ua, va in zip(x_i, x_j)])
@@ -135,4 +136,4 @@ plt.figure()
 nolds.lyap_r(np.array(HRV), emb_dim=2, lag=1, min_tsep=10, tau=1, debug_plot=True)
 plt.show()
 
-nolds.dfa(HRV)
+DFA_Slope = nolds.dfa(np.array(HRV))
