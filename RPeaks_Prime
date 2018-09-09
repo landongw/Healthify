@@ -9,12 +9,12 @@ def QRS_detection(signal, fs):
     array = []
     for x in rpeaks:
         array.append(x)
-    #plt.figure()
-    #plt.plot(signal[1:1000])
-    #for xc in array:
-    #    if xc < 1000:
-    #        plt.axvline(x=xc, color='red')
-    #plt.show()
+    plt.figure()
+    plt.plot(signal[1:1000])
+    for xc in array:
+        if xc < 1000:
+            plt.axvline(x=xc, color='red')
+    plt.show()
 
     return array
 

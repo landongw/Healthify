@@ -35,7 +35,7 @@ def Feature_Exreaction(signal, fs):
 
     # R-Peak Detection
 
-    rpeaks = RPeak.QRS_detection(signal=ECG_filtered, sample_rate=fs, max_bpm=300)
+    rpeaks = RPeak.QRS_detection(ECG_filtered, fs)
 
     # plt.figure()
     # plt.plot(ECG_filtered[1:10000])
@@ -148,8 +148,8 @@ def Feature_Exreaction(signal, fs):
             NegSeqTrend_Feature += 1
 
     ####### Feature Vector #######
-    Feature = mean_Feature + std_Feature + RR_seperated_mean_Feature + RR_seperated_std_Feature + pNN5_Feature + pNN10_Feature \
-              + pNN50_Feature + [RR_Energy_Ratio_Feature] + [SD_Ratio_Feature] + [ApEn_Feature] + [Lya_Exp_Feature] \
-              + [DFA_Slope_Feature] + [PosSeqTrend_Feature] + [NegSeqTrend_Feature]
 
+    Feature = [mean_Feature + std_Feature + RR_seperated_mean_Feature + RR_seperated_std_Feature + [len(pNN5_Feature[0])] + [len(pNN10_Feature[0])] \
+              + [len(pNN50_Feature[0])] + [RR_Energy_Ratio_Feature] + [SD_Ratio_Feature] + ApEn_Feature + [Lya_Exp_Feature] \
+              + [DFA_Slope_Feature] + [PosSeqTrend_Feature] + [NegSeqTrend_Feature]]
     return Feature
