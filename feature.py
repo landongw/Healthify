@@ -67,15 +67,15 @@ for i in range(10):
     plt.plot(template[i])
 # plt.show()
 
-HRV = []
+RR = []
 for i in range(len(rpeaks) - 2):
-    HRV.append(rpeaks[i + 2] - rpeaks[i + 1])
+    RR.append(rpeaks[i + 2] - rpeaks[i + 1])
 
 seperated = []
 N = 30
-number = int(np.floor(len(HRV) / N))
+number = int(np.floor(len(RR) / N))
 for i in range(number):
-    seperated.append(HRV[i:i + N])
+    seperated.append(RR[i:i + N])
 
 feature_mean = []
 feature_std = []
@@ -86,60 +86,60 @@ for i in range(len(seperated)):
 
 import numpy
 
-HRV_seperated = numpy.zeros((number, N - 1))
+RR_seperated = numpy.zeros((number, N - 1))
 
 for i in range(number):
     for j in range(N - 1):
-        HRV_seperated[i, j] = seperated[i][j + 1] - seperated[i][j]
+        RR_seperated[i, j] = seperated[i][j + 1] - seperated[i][j]
 feature_hmean = []
 feature_hstd = []
 for i in range(number):
-    feature_hmean.append(np.mean(HRV_seperated[i, :]))
-    feature_hstd.append(np.mean(HRV_seperated[i, :]))
+    feature_hmean.append(np.mean(RR_seperated[i, :]))
+    feature_hstd.append(np.mean(RR_seperated[i, :]))
 
 pNN50 = []
 pNN10 = []
 pNN5 = []
 
 for i in range(number):
-    pNN50.append([abs(x) for x in HRV_seperated[i][:] if abs(x) > 50 * fs / 1000])
-    pNN10.append([abs(x) for x in HRV_seperated[i][:] if abs(x) > 10 * fs / 1000])
-    pNN5.append([abs(x) for x in HRV_seperated[i][:] if abs(x) > 5 * fs / 1000])
+    pNN50.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 50 * fs / 1000])
+    pNN10.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 10 * fs / 1000])
+    pNN5.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 5 * fs / 1000])
 
 h_high = sig.firwin(101, [0.15, 0.4], width=None, window='hamming', pass_zero=False, scale=True, fs=1)
 h_low = sig.firwin(101, [0.04, 0.15], width=None, window='hamming', pass_zero=False, scale=True, fs=1)
 
-HRV_high = sig.fftconvolve(h_high, HRV)
-HRV_low = sig.fftconvolve(h_low, HRV)
+RR_high = sig.fftconvolve(h_high, RR)
+RR_low = sig.fftconvolve(h_low, RR)
 
-HRV_Energy_Ratio = np.sum(HRV_high ** 2) / np.sum(HRV_low ** 2)
-x = np.array(HRV[0:-1])
-y = np.array(HRV[1:])
+RR_Energy_Ratio = np.sum(RR_high ** 2) / np.sum(RR_low ** 2)
+x = np.array(RR[0:-1])
+y = np.array(RR[1:])
 
 SD1 = np.std(np.abs(x - y))
-SD2 = np.std(np.abs(x - y + 2 * np.mean(HRV)))
+SD2 = np.std(np.abs(x - y + 2 * np.mean(RR)))
 
 SD_Ratio = SD1 / SD2
 ApEn_Feature = []
 
 for i in range(number):
-    ApEn_Feature.append(ApEn(np.array(HRV_seperated[i]), 2, 2 * np.std(HRV_seperated[i])))
+    ApEn_Feature.append(ApEn(np.array(RR_seperated[i]), 2, 2 * np.std(RR_seperated[i])))
 
-HRV_fft = np.abs(ffttools.fft(HRV))
-HRV_fft[0] = 0  # Remove
-ProbDens = 2. / len(signal) * np.abs(HRV_fft[0:len(HRV_fft) // 2])
+RR_fft = np.abs(ffttools.fft(RR))
+RR_fft[0] = 0  # Remove
+ProbDens = 2. / len(signal) * np.abs(RR_fft[0:len(RR_fft) // 2])
 ProbDens = ProbDens / np.sum(ProbDens)
 SpEn_Feature = stats.entropy(ProbDens, base=2)
-Lya_Exp = nolds.lyap_r(np.array(HRV), emb_dim=2, lag=1, min_tsep=10, tau=1)
+Lya_Exp = nolds.lyap_r(np.array(RR), emb_dim=2, lag=1, min_tsep=10, tau=1)
 
 plt.figure()
-nolds.lyap_r(np.array(HRV), emb_dim=2, lag=1, min_tsep=10, tau=1, debug_plot=True)
+nolds.lyap_r(np.array(RR), emb_dim=2, lag=1, min_tsep=10, tau=1, debug_plot=True)
 plt.show()
 
-DFA_Slope = nolds.dfa(np.array(HRV))
+DFA_Slope = nolds.dfa(np.array(RR))
 
 
-DeltaRR = np.array(HRV[1:]) - np.array(HRV[0:-1])
+DeltaRR = np.array(RR[1:]) - np.array(RR[0:-1])
 print(DeltaRR)
 
 PosSeqTrend = 0
