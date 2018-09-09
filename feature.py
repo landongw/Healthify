@@ -45,14 +45,14 @@ ECG_filtered = sig.fftconvolve(h, signal)
 
 rpeaks = RPeak.QRS_detection(signal=ECG_filtered, sample_rate=fs, max_bpm=300)
 
-plt.figure()
-plt.plot(ECG_filtered[1:10000])
-for xc in rpeaks:
-    if xc < 10000:
-        plt.axvline(x=xc, color='red')
+#plt.figure()
+#plt.plot(ECG_filtered[1:10000])
+#for xc in rpeaks:
+#    if xc < 10000:
+#        plt.axvline(x=xc, color='red')
 
-plt.title("R-Peaks")
-# plt.show()
+#plt.title("R-Peaks")
+#plt.show()
 
 # HeartBeat Extraction
 j = 0
@@ -61,10 +61,10 @@ template = []
 for i in rpeaks:
     template.append(ECG_filtered[int(np.floor(i - 0.2 * fs)): int(np.floor(i + 0.4 * fs))])
     j += 1
-plt.figure()
+#plt.figure()
 
-for i in range(10):
-    plt.plot(template[i])
+#for i in range(10):
+#    plt.plot(template[i])
 # plt.show()
 
 RR = []
@@ -78,12 +78,12 @@ for i in range(number):
     seperated.append(RR[i:i + N])
 
 ####### RR Features #######
-feature_mean = []
-feature_std = []
+mean_Feature = []
+std_Feature = []
 
 for i in range(len(seperated)):
-    feature_mean.append(np.mean(seperated[i]))
-    feature_std.append(np.mean(seperated[i]))
+    mean_Feature.append(np.mean(seperated[i]))
+    std_Feature.append(np.mean(seperated[i]))
 
 import numpy
 
@@ -101,13 +101,13 @@ for i in range(number):
 
 ####### pNN Feature #######
 pNN50_Feature = []
-pNN10 = []
-pNN5 = []
+pNN10_Feature = []
+pNN5_Feature = []
 
 for i in range(number):
-    pNN50.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 50 * fs / 1000])
-    pNN10.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 10 * fs / 1000])
-    pNN5.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 5 * fs / 1000])
+    pNN50_Feature.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 50 * fs / 1000])
+    pNN10_Feature.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 10 * fs / 1000])
+    pNN5_Feature.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 5 * fs / 1000])
 
 
 ####### Frequncy Energy Ratio Feature #######
@@ -117,7 +117,7 @@ h_low = sig.firwin(101, [0.04, 0.15], width=None, window='hamming', pass_zero=Fa
 RR_high = sig.fftconvolve(h_high, RR)
 RR_low = sig.fftconvolve(h_low, RR)
 
-RR_Energy_Ratio = np.sum(RR_high ** 2) / np.sum(RR_low ** 2)
+RR_Energy_Ratio_Feature = np.sum(RR_high ** 2) / np.sum(RR_low ** 2)
 
 ####### Poincare Map Feature #######
 x = np.array(RR[0:-1])
@@ -140,11 +140,7 @@ RR_fft[0] = 0  # Remove
 ProbDens = 2. / len(signal) * np.abs(RR_fft[0:len(RR_fft) // 2])
 ProbDens = ProbDens / np.sum(ProbDens)
 SpEn_Feature = stats.entropy(ProbDens, base=2)
-Lya_Exp = nolds.lyap_r(np.array(RR), emb_dim=2, lag=1, min_tsep=10, tau=1)
-
-plt.figure()
-nolds.lyap_r(np.array(RR), emb_dim=2, lag=1, min_tsep=10, tau=1, debug_plot=True)
-plt.show()
+Lya_Exp_Feature = nolds.lyap_r(np.array(RR), emb_dim=2, lag=1, min_tsep=10, tau=1)
 
 ####### Detrended Fluctuation Analysis Feature #######
 DFA_Slope_Feature = nolds.dfa(np.array(RR))
