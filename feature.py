@@ -77,6 +77,7 @@ number = int(np.floor(len(RR) / N))
 for i in range(number):
     seperated.append(RR[i:i + N])
 
+####### RR Features #######
 feature_mean = []
 feature_std = []
 
@@ -86,18 +87,20 @@ for i in range(len(seperated)):
 
 import numpy
 
+####### RR_Seperated Features #######
 RR_seperated = numpy.zeros((number, N - 1))
 
 for i in range(number):
     for j in range(N - 1):
         RR_seperated[i, j] = seperated[i][j + 1] - seperated[i][j]
-feature_hmean = []
-feature_hstd = []
+RR_seperated_mean_Feature = []
+RR_seperated_std_Feature = []
 for i in range(number):
-    feature_hmean.append(np.mean(RR_seperated[i, :]))
-    feature_hstd.append(np.mean(RR_seperated[i, :]))
+    RR_seperated_mean_Feature.append(np.mean(RR_seperated[i, :]))
+    RR_seperated_std_Feature.append(np.mean(RR_seperated[i, :]))
 
-pNN50 = []
+####### pNN Feature #######
+pNN50_Feature = []
 pNN10 = []
 pNN5 = []
 
@@ -106,6 +109,8 @@ for i in range(number):
     pNN10.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 10 * fs / 1000])
     pNN5.append([abs(x) for x in RR_seperated[i][:] if abs(x) > 5 * fs / 1000])
 
+
+####### Frequncy Energy Ratio Feature #######
 h_high = sig.firwin(101, [0.15, 0.4], width=None, window='hamming', pass_zero=False, scale=True, fs=1)
 h_low = sig.firwin(101, [0.04, 0.15], width=None, window='hamming', pass_zero=False, scale=True, fs=1)
 
@@ -113,18 +118,23 @@ RR_high = sig.fftconvolve(h_high, RR)
 RR_low = sig.fftconvolve(h_low, RR)
 
 RR_Energy_Ratio = np.sum(RR_high ** 2) / np.sum(RR_low ** 2)
+
+####### Poincare Map Feature #######
 x = np.array(RR[0:-1])
 y = np.array(RR[1:])
 
 SD1 = np.std(np.abs(x - y))
 SD2 = np.std(np.abs(x - y + 2 * np.mean(RR)))
 
-SD_Ratio = SD1 / SD2
+SD_Ratio_Feature = SD1 / SD2
+
+####### Approximate Entropy Feature #######
 ApEn_Feature = []
 
 for i in range(number):
-    ApEn_Feature.append(ApEn(np.array(RR_seperated[i]), 2, 2 * np.std(RR_seperated[i])))
+    ApEn_Feature.append(ApEn(np.array(seperated[i]), 2, 2 * np.std(seperated[i])))
 
+####### Spectral Entropy Feature #######
 RR_fft = np.abs(ffttools.fft(RR))
 RR_fft[0] = 0  # Remove
 ProbDens = 2. / len(signal) * np.abs(RR_fft[0:len(RR_fft) // 2])
@@ -136,18 +146,18 @@ plt.figure()
 nolds.lyap_r(np.array(RR), emb_dim=2, lag=1, min_tsep=10, tau=1, debug_plot=True)
 plt.show()
 
-DFA_Slope = nolds.dfa(np.array(RR))
+####### Detrended Fluctuation Analysis Feature #######
+DFA_Slope_Feature = nolds.dfa(np.array(RR))
 
-
+####### Sequential Trend Analysis Feature #######
 DeltaRR = np.array(RR[1:]) - np.array(RR[0:-1])
 print(DeltaRR)
 
-PosSeqTrend = 0
-NegSeqTrend = 0
+PosSeqTrend_Feature = 0
+NegSeqTrend_Feature = 0
 for i in range(len(DeltaRR) - 1):
     if DeltaRR[i] > 0 and DeltaRR[i + 1] > 0:
-        PosSeqTrend += 1
+        PosSeqTrend_Feature += 1
     if DeltaRR[i] < 0 and DeltaRR[i + 1] < 0:
-        NegSeqTrend += 1
+        NegSeqTrend_Feature += 1
 
-print(PosSeqTrend, NegSeqTrend)
