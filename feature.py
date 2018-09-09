@@ -129,9 +129,10 @@ HRV_fft[0] = 0  # Remove
 ProbDens = 2. / len(signal) * np.abs(HRV_fft[0:len(HRV_fft) // 2])
 ProbDens = ProbDens / np.sum(ProbDens)
 SpEn_Feature = stats.entropy(ProbDens, base=2)
-Lyapanov_Exp = nolds.lyap_r(np.array(HRV), emb_dim=2, lag=1, min_tsep=10, tau=1)
+Lya_Exp = nolds.lyap_r(np.array(HRV), emb_dim=2, lag=1, min_tsep=10, tau=1)
 
 plt.figure()
 nolds.lyap_r(np.array(HRV), emb_dim=2, lag=1, min_tsep=10, tau=1, debug_plot=True)
 plt.show()
 
+nolds.dfa(HRV)
