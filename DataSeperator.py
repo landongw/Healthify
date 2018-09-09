@@ -53,6 +53,7 @@ print(Signals)
 print(Labels)
 print("Number of Signals:")
 print(len(Signals))
+print(len(Labels))
 
 with open("demofile.txt", "w+") as f:
     for i in range(len(Labels)):
