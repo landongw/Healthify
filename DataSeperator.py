@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+# You can use "Signals" and "Labels" or use the csv file that this code generates
+
+>>>>>>> db52315919cdb8a98420185cd289514715b1d4bc
 from matplotlib import pyplot as plt
 from scipy import signal as sig
 import csv
@@ -51,6 +56,10 @@ print(Signals)
 print(Labels)
 print("Number of Signals:")
 print(len(Signals))
+<<<<<<< HEAD
+=======
+print(len(Labels))
+>>>>>>> db52315919cdb8a98420185cd289514715b1d4bc
 
 with open("demofile.txt", "w+") as f:
     for i in range(len(Labels)):
@@ -63,4 +72,8 @@ with open("demofile.txt", "w+") as f:
 
 plt.figure()
 plt.plot(Signals[0])
+<<<<<<< HEAD
 plt.show()
+=======
+plt.show()
+>>>>>>> db52315919cdb8a98420185cd289514715b1d4bc
