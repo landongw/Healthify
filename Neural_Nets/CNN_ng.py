@@ -55,16 +55,16 @@ def block_type2(x, nb_filter, filter_len=16):
 
 
 def modelGenerator(signal_size):
-    inp = Input(shape=(signal_size,1))
-    inp_begin= Conv1D(64, 16, padding='same')(inp)
+    inp = Input(shape=(X_train.shape[1:]))
+    inp_begin = Conv1D(64, 16, padding='same')(inp)
     inp_begin = BatchNormalization()(inp_begin)
-    inp_begin= Activation('relu')(inp_begin)
+    inp_begin = Activation('relu')(inp_begin)
 
     out_1=block_type1(inp_begin, 64, filter_len=16)
     #maxpooling1
-    inp_1=MaxPooling1D(pool_size=2, padding='valid')(inp_begin)
-    out_1=MaxPooling1D(pool_size=2, padding='valid')(out_1)
-    out_1=keras.layers.add([out_1, inp_1])
+    inp_1 = MaxPooling1D(pool_size=2, padding='valid')(inp_begin)
+    out_1 = MaxPooling1D(pool_size=2, padding='valid')(out_1)
+    out_1 = keras.layers.add([out_1, inp_1])
 
     out_2=block_type2(out_1, 64, filter_len=16)
 
@@ -145,12 +145,12 @@ def main():
     model, tensorboard = modelGenerator(signal_size)
     class_weight ={0.: 1,
                    1.: 6}
-    model.fit(X, y,
-              batch_size=32,
-              validation_split=0.1,
+    model.fit(X_train, y_train,
+              batch_size=128,
               epochs=10,
-              callbacks=[tensorboard],
-              class_weight=class_weight)  # train the model, 10 epochs with callback for tensorboard
+              validation_data=(X_test, y_test),
+              class_weight=class_weight,
+              callbacks=[tensorboard])
     model.save('CNN_model.h5')
 
 if __name__ == '__main__':
