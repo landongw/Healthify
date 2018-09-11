@@ -8,10 +8,31 @@ from keras.layers.core import Dense, Activation, Flatten, Dropout
 from keras.layers.normalization import BatchNormalization
 from keras.models import Model
 from keras.layers import Input
-from dataGenerator import data # dataGenerator library file generates data for model
 # more info on callbakcs: https://keras.io/callbacks/ model saver is cool too.
 from tensorflow.keras.callbacks import TensorBoard
 import time
+import os
+import pickle
+from tensorflow import reset_default_graph
+reset_default_graph()
+
+path = 'E:\local-repo\Healthify'
+os.chdir(path)
+
+f = open('X_train.pickle', 'rb')
+X_train = pickle.load(f)
+f = open('y_train.pickle', 'rb')
+y_train = pickle.load(f)
+f = open('X_test.pickle', 'rb')
+X_test = pickle.load(f)
+f = open('y_test.pickle', 'rb')
+y_test = pickle.load(f)
+
+
+X_train = np.array(X_train).reshape(-1, 300, 1)
+X_test = np.array(X_test).reshape(-1, 300, 1)
+y_train = np.array(y_train).reshape(-1, 1)
+y_test = np.array(y_test).reshape(-1, 1)
 
 def block_type1(x, nb_filter, filter_len=16):
     out = Conv1D(nb_filter, filter_len, padding='same')(x)
@@ -108,8 +129,8 @@ def modelGenerator(signal_size):
     out_final= Activation('relu')(out_final)
 
     out_final=Flatten()(out_final)
-    out_final=Dense(signal_size)(out_final)
-    out_final= Activation('softmax')(out_final)
+    out_final=Dense(1)(out_final)
+    out_final= Activation('sigmoid')(out_final)
     model = Model(inp, out_final)
     name = "ecg-cnn-{}".format(int(time.time()))
     tensorboard = TensorBoard(log_dir="logs/{}".format(name))   # initialize Tensorboard
@@ -118,16 +139,18 @@ def modelGenerator(signal_size):
 
 
 def main():
-    X, y = data(normalize=True)
-    fs = 125 # 125Hz
-    period = 10 # 10s
+    fs = 100 # 125Hz
+    period = 3 # 10s
     signal_size = fs * period # 10 stands for 10s of signal
     model, tensorboard = modelGenerator(signal_size)
+    class_weight ={0.: 1,
+                   1.: 6}
     model.fit(X, y,
               batch_size=32,
               validation_split=0.1,
               epochs=10,
-              callbacks=[tensorboard])  # train the model, 10 epochs with callback for tensorboard
+              callbacks=[tensorboard],
+              class_weight=class_weight)  # train the model, 10 epochs with callback for tensorboard
     model.save('CNN_model.h5')
 
 if __name__ == '__main__':
