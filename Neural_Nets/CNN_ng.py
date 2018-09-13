@@ -148,13 +148,22 @@ def main():
     signal_size = fs * period # 10 stands for 10s of signal
     model, tensorboard = modelGenerator(signal_size)
     class_weight ={0.: 1,
+<<<<<<< HEAD
                    1.: 5.277}
+=======
+                   1.: 6}
+>>>>>>> 0cf1e5cebdf0a08cb1f544699360df56a2c740c0
     model.fit(X_train, y_train,
               batch_size=128,
               epochs=10,
               validation_data=(X_test, y_test),
+<<<<<<< HEAD
               class_weight=class_weight)
     model.evaluate(X_test, y_test)
+=======
+              class_weight=class_weight,
+              callbacks=[tensorboard])
+>>>>>>> 0cf1e5cebdf0a08cb1f544699360df56a2c740c0
     model.save('CNN_model.h5')
 
 if __name__ == '__main__':
