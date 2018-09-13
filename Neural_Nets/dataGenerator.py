@@ -4,7 +4,7 @@ import csv
 import os
 import pickle
 
-path = 'E:\local-repo\Healthify'
+path = 'C:\Healthify\Healthify'
 os.chdir(path)
 number_samples = (19643 - 622)  # all samples - n/a samples
 fs = 100  # 100Hz
