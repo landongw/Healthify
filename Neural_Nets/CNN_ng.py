@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import tensorflow as tf
 import keras
-from keras.layers import merge
 from keras.layers.convolutional import Conv1D
 from keras.layers.pooling import MaxPooling1D
 from keras.layers import *
@@ -8,10 +8,34 @@ from keras.layers.core import Dense, Activation, Flatten, Dropout
 from keras.layers.normalization import BatchNormalization
 from keras.models import Model
 from keras.layers import Input
-from dataGenerator import data # dataGenerator library file generates data for model
+
 # more info on callbakcs: https://keras.io/callbacks/ model saver is cool too.
 from tensorflow.keras.callbacks import TensorBoard
 import time
+import os
+import pickle
+from tensorflow import reset_default_graph
+reset_default_graph()
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+sess = tf.Session(config=tf.ConfigProto(device_count={'GPU': 0}))
+
+path = 'C:\Healthify\Healthify'
+os.chdir(path)
+
+f = open('X_train.pickle', 'rb')
+X_train = pickle.load(f)
+f = open('y_train.pickle', 'rb')
+y_train = pickle.load(f)
+f = open('X_test.pickle', 'rb')
+X_test = pickle.load(f)
+f = open('y_test.pickle', 'rb')
+y_test = pickle.load(f)
+
+
+X_train = np.array(X_train).reshape(-1, 300, 1)
+X_test = np.array(X_test).reshape(-1, 300, 1)
+y_train = np.array(y_train).reshape(-1, 1)
+y_test = np.array(y_test).reshape(-1, 1)
 
 def block_type1(x, nb_filter, filter_len=16):
     out = Conv1D(nb_filter, filter_len, padding='same')(x)
@@ -34,16 +58,16 @@ def block_type2(x, nb_filter, filter_len=16):
 
 
 def modelGenerator(signal_size):
-    inp = Input(shape=(signal_size,1))
-    inp_begin= Conv1D(64, 16, padding='same')(inp)
+    inp = Input(shape=(X_train.shape[1:]))
+    inp_begin = Conv1D(64, 16, padding='same')(inp)
     inp_begin = BatchNormalization()(inp_begin)
-    inp_begin= Activation('relu')(inp_begin)
+    inp_begin = Activation('relu')(inp_begin)
 
     out_1=block_type1(inp_begin, 64, filter_len=16)
     #maxpooling1
-    inp_1=MaxPooling1D(pool_size=2, padding='valid')(inp_begin)
-    out_1=MaxPooling1D(pool_size=2, padding='valid')(out_1)
-    out_1=keras.layers.add([out_1, inp_1])
+    inp_1 = MaxPooling1D(pool_size=2, padding='valid')(inp_begin)
+    out_1 = MaxPooling1D(pool_size=2, padding='valid')(out_1)
+    out_1 = keras.layers.add([out_1, inp_1])
 
     out_2=block_type2(out_1, 64, filter_len=16)
 
@@ -108,26 +132,38 @@ def modelGenerator(signal_size):
     out_final= Activation('relu')(out_final)
 
     out_final=Flatten()(out_final)
-    out_final=Dense(signal_size)(out_final)
-    out_final= Activation('softmax')(out_final)
+    out_final=Dense(1)(out_final)
+    out_final= Activation('sigmoid')(out_final)
     model = Model(inp, out_final)
     name = "ecg-cnn-{}".format(int(time.time()))
     tensorboard = TensorBoard(log_dir="logs/{}".format(name))   # initialize Tensorboard
-    model.compile(optimizer='adam', loss='mse')
+    opt = keras.optimizers.Adam(lr=0.0002, decay=1e-6)
+    model.compile(optimizer=opt, loss='mse')
     return model, tensorboard
 
 
 def main():
-    X, y = data(normalize=True)
-    fs = 125 # 125Hz
-    period = 10 # 10s
+    fs = 100 # 125Hz
+    period = 3 # 10s
     signal_size = fs * period # 10 stands for 10s of signal
     model, tensorboard = modelGenerator(signal_size)
-    model.fit(X, y,
-              batch_size=32,
-              validation_split=0.1,
+    class_weight ={0.: 1,
+<<<<<<< HEAD
+                   1.: 5.277}
+=======
+                   1.: 6}
+>>>>>>> 0cf1e5cebdf0a08cb1f544699360df56a2c740c0
+    model.fit(X_train, y_train,
+              batch_size=128,
               epochs=10,
-              callbacks=[tensorboard])  # train the model, 10 epochs with callback for tensorboard
+              validation_data=(X_test, y_test),
+<<<<<<< HEAD
+              class_weight=class_weight)
+    model.evaluate(X_test, y_test)
+=======
+              class_weight=class_weight,
+              callbacks=[tensorboard])
+>>>>>>> 0cf1e5cebdf0a08cb1f544699360df56a2c740c0
     model.save('CNN_model.h5')
 
 if __name__ == '__main__':

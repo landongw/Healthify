@@ -1,3 +1,4 @@
+
 # You can use "Signals" and "Labels" or use the csv file that this code generates
 
 from matplotlib import pyplot as plt
@@ -5,9 +6,9 @@ from scipy import signal as sig
 import csv
 import os
 
-location = '/media/bemoniri/d08ff677-13e1-4052-b55d-6337b6f8c634/PTBDB-DataBase/'  # Database location
-header_data = './Label/data.csv'  # Labels location
-
+location = 'D:/PTBDB-DataBase/'  # Database location
+os.chdir('E:\local-repo\Healthify')  # Directory
+# You can use "Signals" and "Labels" or use the csv file that this code generates
 dictionary = {}  # Patient's Disease Dictionary
 with open("Label/data.csv") as tsv:
     for line in csv.reader(tsv):
@@ -53,7 +54,9 @@ print(Signals)
 print(Labels)
 print("Number of Signals:")
 print(len(Signals))
+
 print(len(Labels))
+
 
 with open("demofile.txt", "w+") as f:
     for i in range(len(Labels)):
@@ -67,3 +70,5 @@ with open("demofile.txt", "w+") as f:
 plt.figure()
 plt.plot(Signals[0])
 plt.show()
+plt.show()
+
