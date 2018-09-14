@@ -1,7 +1,5 @@
 # Our Libraries
-import myplottools
-import RPeak
-
+from Classic_Methods import myplottools, RPeak
 
 # Third-Party Libraries
 import numpy as np

@@ -1,5 +1,5 @@
 # Our Libraries
-import RPeak
+from Classic_Methods import RPeak
 
 # Third-Party Libraries
 import numpy as np
@@ -7,7 +7,6 @@ from scipy import signal as sig
 import scipy.fftpack as ffttools
 from scipy import stats
 import nolds
-import csv
 
 
 def ApEn(U, m, r):
